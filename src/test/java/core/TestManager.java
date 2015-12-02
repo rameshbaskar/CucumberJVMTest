@@ -27,14 +27,34 @@ public class TestManager {
     }
 
     public static String baseUrl() {
-        String url = properties.getProperty("base.url");
-        Logger.info("base.url=" + url);
-        return url;
+        return getProperty("base.url");
+    }
+
+    public static String dbDriver() {
+        return getProperty("database.driver");
+    }
+
+    public static String dbUrl() {
+        return getProperty("database.url");
+    }
+
+    public static String dbUsername() {
+        return getProperty("database.username");
+    }
+
+    public static String dbPassword() {
+        return getProperty("database.password");
     }
 
     public static void prepareResultsFolder() {
         File dir = new File("results");
         dir.delete();
         dir.mkdir();
+    }
+
+    private static String getProperty(String key) {
+        String value = properties.getProperty(key);
+        Logger.info("Property fetched: " + key + " = " + value);
+        return value;
     }
 }
