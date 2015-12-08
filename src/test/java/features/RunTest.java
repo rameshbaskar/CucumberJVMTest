@@ -17,6 +17,7 @@ public class RunTest {
     public static void setup() {
         TestManager.prepareResultsFolder();
         TestManager.loadConfiguration();
+        Driver.start();
     }
 
     @AfterClass
