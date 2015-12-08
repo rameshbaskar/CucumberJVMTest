@@ -1,11 +1,12 @@
 package ui.pages.google;
 
-import core.TestManager;
 import ui.elements.Button;
 import ui.elements.Locator;
 import ui.elements.TextBox;
 import ui.pages.BasePage;
 import utils.Logger;
+
+import static core.TestManager.baseUrl;
 
 /**
  * Created by Ramesh Baskarasubramanian on 6/11/15.
@@ -21,7 +22,7 @@ public class HomePage extends BasePage {
     }
 
     public void visit() {
-        String url = TestManager.baseUrl();
+        String url = baseUrl();
         Logger.info("Loading HomePage using URL: " + url);
         visit(url);
         if (!loaded()) {

@@ -1,9 +1,10 @@
 package ui.elements;
 
-import core.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import utils.CommonUtils;
+
+import static core.Driver.driver;
+import static utils.CommonUtils.sleepFor;
 
 /**
  * Created by Ramesh Baskarasubramanian on 6/10/15.
@@ -66,11 +67,11 @@ public class Element {
 
         while (counter <= timeOut) {
             try {
-                element = Driver.driver().findElement(by);
+                element = driver().findElement(by);
                 break;
             } catch (Exception e) {
                 counter++;
-                CommonUtils.sleepFor(1);
+                sleepFor(1);
             }
         }
 
