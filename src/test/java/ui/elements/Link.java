@@ -1,4 +1,4 @@
-package elements;
+package ui.elements;
 
 /**
  * Created by Ramesh Baskarasubramanian on 6/10/15.

@@ -1,10 +1,10 @@
-package pages.google;
+package ui.pages.google;
 
 import core.TestManager;
-import elements.Button;
-import elements.Locator;
-import elements.TextBox;
-import pages.BasePage;
+import ui.elements.Button;
+import ui.elements.Locator;
+import ui.elements.TextBox;
+import ui.pages.BasePage;
 import utils.Logger;
 
 /**

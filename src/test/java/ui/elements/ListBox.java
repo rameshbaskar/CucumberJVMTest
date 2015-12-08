@@ -1,4 +1,4 @@
-package elements;
+package ui.elements;
 
 import org.openqa.selenium.support.ui.Select;
 

@@ -1,4 +1,4 @@
-package elements;
+package ui.elements;
 
 import core.Driver;
 import org.openqa.selenium.By;
