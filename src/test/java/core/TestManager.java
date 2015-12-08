@@ -1,9 +1,11 @@
 package core;
 
+import org.apache.commons.io.FileUtils;
 import utils.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 /**
@@ -48,8 +50,16 @@ public class TestManager {
 
     public static void prepareResultsFolder() {
         File dir = new File("results");
-        dir.delete();
+        deleteResultsFolder(dir);
         dir.mkdir();
+    }
+
+    private static void deleteResultsFolder(File dir) {
+        try {
+            FileUtils.deleteDirectory(dir);
+        } catch (IOException e) {
+            Logger.exception(e);
+        }
     }
 
     private static String getProperty(String key) {
