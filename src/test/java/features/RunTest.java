@@ -5,8 +5,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
-import static core.Driver.*;
-import static core.TestManager.*;
+import static core.Driver.close;
+import static core.Driver.start;
+import static core.TestManager.loadConfiguration;
+import static core.TestManager.prepareResultsFolder;
 
 /**
  * Created by Ramesh Baskarasubramanian on 6/12/15.

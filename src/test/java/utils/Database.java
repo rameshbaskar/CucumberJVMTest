@@ -2,7 +2,9 @@ package utils;
 
 import core.TestManager;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * Created by ramesh on 02/12/15.
@@ -11,7 +13,7 @@ public class Database {
     private static Connection connection;
 
     public void initialize() {
-        if(connection == null) {
+        if (connection == null) {
             try {
                 Class.forName(TestManager.dbDriver());
                 connection = DriverManager.getConnection(TestManager.dbUrl(), TestManager.dbUsername(), TestManager.dbPassword());
@@ -24,7 +26,7 @@ public class Database {
     }
 
     private void closeConnection() {
-        if(connection != null) {
+        if (connection != null) {
             try {
                 connection.close();
                 connection = null;
