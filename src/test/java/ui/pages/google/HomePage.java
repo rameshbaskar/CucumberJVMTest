@@ -25,12 +25,12 @@ public class HomePage extends BasePage {
         String url = baseUrl();
         Logger.info("Loading HomePage using URL: " + url);
         visit(url);
-        if (!loaded()) {
+        if (!isLoaded()) {
             Logger.exception(new Exception("Home page not loaded !!!"));
         }
     }
 
-    public boolean loaded() {
+    private boolean isLoaded() {
         return tbSearch.exists();
     }
 
@@ -39,7 +39,7 @@ public class HomePage extends BasePage {
         btnSearch.click();
     }
 
-    public boolean searched(String text) {
+    public boolean isSearched(String text) {
         return tbSearch.getValue().contains(text);
     }
 }

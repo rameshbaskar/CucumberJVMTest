@@ -2,18 +2,19 @@ package tests;
 
 import core.Driver;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import ui.pages.google.HomePage;
+
+import static org.junit.Assert.*;
 
 /**
  * Created by ramesh on 22/12/15.
  */
-public class BaseTest {
+class BaseTest {
 
-    protected HomePage homePage;
+    HomePage homePage;
 
-    public BaseTest() {
+    BaseTest() {
         homePage = new HomePage();
     }
 
@@ -27,15 +28,15 @@ public class BaseTest {
         Driver.close();
     }
 
-    protected void shouldBeTrue(boolean actual) {
-        Assert.assertTrue(actual);
+    void shouldBeTrue(boolean actual) {
+        assertTrue(actual);
     }
 
-    protected void shouldBeFalse(boolean actual) {
-        Assert.assertFalse(actual);
+    void shouldBeFalse(boolean actual) {
+        assertFalse(actual);
     }
 
-    protected void shouldBeEqual(Object expected, Object actual) {
-        Assert.assertEquals(expected, actual);
+    void shouldBeEqual(Object expected, Object actual) {
+        assertEquals(expected, actual);
     }
 }

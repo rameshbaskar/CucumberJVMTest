@@ -11,6 +11,6 @@ public class HomePageTests extends BaseTest {
     public void should_be_able_to_search() {
         homePage.visit();
         homePage.searchFor("some");
-        shouldBeTrue(homePage.searched("some"));
+        shouldBeTrue(homePage.isSearched("some"));
     }
 }

@@ -6,17 +6,18 @@ import cucumber.api.java.en.When;
 import ui.pages.google.HomePage;
 import utils.Logger;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created by Ramesh Baskarasubramanian on 6/12/15.
  */
-public class HomePageSteps extends BaseStep {
+public class HomePageSteps {
     private HomePage homePage = new HomePage();
 
     @Given("^I open the home page$")
     public void I_open_the_home_page() throws Throwable {
         Logger.info("Loading the home page...");
         homePage.visit();
-        assertTrue(homePage.loaded(), "Home page not loaded");
     }
 
     @When("^I search for \"([^\"]*)\"$")
@@ -27,7 +28,7 @@ public class HomePageSteps extends BaseStep {
 
     @Then("^I should get the search results for \"([^\"]*)\"$")
     public void I_should_get_the_search_results_for(String text) throws Throwable {
-        Logger.info("Verifying if " + text + " is searched...");
-        assertTrue(homePage.searched(text), "Search failed");
+        Logger.info("Verifying if " + text + " is isSearched...");
+        assertTrue(homePage.isSearched(text));
     }
 }
