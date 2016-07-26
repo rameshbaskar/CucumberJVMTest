@@ -1,11 +1,9 @@
 package core;
 
-import org.apache.commons.io.FileUtils;
 import utils.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
 /**
@@ -28,43 +26,7 @@ public class TestManager {
         }
     }
 
-    public static String baseUrl() {
-        return getProperty("base.url");
-    }
-
-    public static String dbDriver() {
-        return getProperty("database.driver");
-    }
-
-    public static String dbUrl() {
-        return getProperty("database.url");
-    }
-
-    public static String dbUsername() {
-        return getProperty("database.username");
-    }
-
-    public static String dbPassword() {
-        return getProperty("database.password");
-    }
-
-    public static void prepareResultsFolder() {
-        File dir = new File("results");
-        deleteResultsFolder(dir);
-        dir.mkdir();
-    }
-
-    private static void deleteResultsFolder(File dir) {
-        try {
-            FileUtils.deleteDirectory(dir);
-        } catch (IOException e) {
-            Logger.exception(e);
-        }
-    }
-
-    private static String getProperty(String key) {
-        String value = properties.getProperty(key);
-        Logger.info("Property fetched: " + key + " = " + value);
-        return value;
+    public static String getProperty(String propertyName) {
+        return properties.getProperty(propertyName);
     }
 }
