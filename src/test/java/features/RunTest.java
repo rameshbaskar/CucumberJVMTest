@@ -1,5 +1,6 @@
 package features;
 
+import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -14,6 +15,7 @@ import static core.TestManager.prepareResultsFolder;
  * Created by Ramesh Baskarasubramanian on 6/12/15.
  */
 @RunWith(Cucumber.class)
+@CucumberOptions(format = {"pretty", "html:target/cucumber"})
 public class RunTest {
 
     @BeforeClass
