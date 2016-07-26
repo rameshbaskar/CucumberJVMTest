@@ -1,11 +1,12 @@
 package ui.pages.google;
 
-import ui.elements.Button;
-import ui.elements.Locator;
-import ui.elements.TextBox;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import ui.pages.BasePage;
 import utils.Logger;
 
+import static core.Driver.driver;
 import static core.TestManager.baseUrl;
 
 /**
@@ -13,33 +14,31 @@ import static core.TestManager.baseUrl;
  */
 public class HomePage extends BasePage {
 
-    private TextBox tbSearch;
-    private Button btnSearch;
+    @FindBy(name = "q")
+    private WebElement tbSearch;
+
+    @FindBy(name = "btnG")
+    private WebElement btnSearch;
 
     public HomePage() {
-        tbSearch = new TextBox(Locator.Name, "q");
-        btnSearch = new Button(Locator.Name, "btnG");
+        PageFactory.initElements(driver(), this);
     }
 
     public void visit() {
         String url = baseUrl();
         Logger.info("Loading HomePage using URL: " + url);
         visit(url);
-        if (!isLoaded()) {
+        if (!elementWithWaitFor(tbSearch).isDisplayed()) {
             Logger.exception(new Exception("Home page not loaded !!!"));
         }
     }
 
-    private boolean isLoaded() {
-        return tbSearch.exists();
-    }
-
     public void searchFor(String text) {
-        tbSearch.setText(text);
+        tbSearch.sendKeys(text);
         btnSearch.click();
     }
 
     public boolean isSearched(String text) {
-        return tbSearch.getValue().contains(text);
+        return tbSearch.getAttribute("value").contains(text);
     }
 }
