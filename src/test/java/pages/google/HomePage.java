@@ -5,7 +5,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.Logger;
 
-import static core.Driver.driver;
 import static core.TestManager.baseUrl;
 
 /**
@@ -20,7 +19,7 @@ public class HomePage extends BasePage {
     private WebElement btnSearch;
 
     public HomePage() {
-        PageFactory.initElements(driver(), this);
+        PageFactory.initElements(driver, this);
     }
 
     public void visit() {
