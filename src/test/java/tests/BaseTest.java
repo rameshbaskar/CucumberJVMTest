@@ -3,7 +3,7 @@ package tests;
 import core.Driver;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import ui.pages.google.HomePage;
+import pages.google.HomePage;
 
 import static org.junit.Assert.*;
 
