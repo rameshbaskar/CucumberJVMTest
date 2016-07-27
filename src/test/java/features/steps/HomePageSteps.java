@@ -28,7 +28,7 @@ public class HomePageSteps {
 
     @Then("^I should get the search results for \"([^\"]*)\"$")
     public void I_should_get_the_search_results_for(String text) throws Throwable {
-        Logger.info("Verifying if " + text + " is isSearched...");
+        Logger.info("Verifying if " + text + " is searched...");
         assertTrue(homePage.isSearched(text));
     }
 }
