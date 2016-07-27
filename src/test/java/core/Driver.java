@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import utils.CommonUtils;
@@ -22,7 +23,14 @@ public class Driver {
         if (webDriver == null) {
             Logger.info("WebDriver not initialized. Starting one now...");
             try {
-                webDriver = new FirefoxDriver(new FirefoxProfile());
+                if (TestManager.getProperty("browser").equals("firefox")) {
+                    Logger.info("Starting firefox driver now...");
+                    webDriver = new FirefoxDriver(new FirefoxProfile());
+                } else {
+                    Logger.info("Starting chrome driver now...");
+                    System.setProperty("webdriver.chrome.driver", TestManager.getProperty("chrome.path"));
+                    webDriver = new ChromeDriver();
+                }
                 Logger.info("WebDriver started.");
             } catch (Exception e) {
                 Logger.error("Unable to initialize the web driver !!!");
