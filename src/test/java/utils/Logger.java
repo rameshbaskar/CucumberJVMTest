@@ -1,5 +1,7 @@
 package utils;
 
+import core.Driver;
+
 /**
  * Created by rameshb on 6/10/15.
  */
@@ -13,8 +15,10 @@ public class Logger {
     }
 
     public static void exception(Exception exception) {
+        Driver.screenShot();
         System.err.println("Fatal exception has occurred !!! Below is the stacktrace for debugging purposes.");
         exception.printStackTrace();
+        Driver.close();
         System.exit(0);
     }
 

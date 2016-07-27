@@ -24,6 +24,7 @@ public class Driver {
             Logger.info("WebDriver not initialized. Starting one now...");
             try {
                 launchDriver();
+                Logger.exception(new Exception("Unable to initialize the web driver !!!"));
                 Logger.info("WebDriver started.");
             } catch (Exception e) {
                 Logger.error("Unable to initialize the web driver !!!");
@@ -37,21 +38,25 @@ public class Driver {
     }
 
     public static void screenShot() {
-        try {
-            File srcFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-            String screenshotFileName = "screenshot_" + CommonUtils.getCustomTimeStampFor("yyyyMMdd_HHmmss") + ".png";
-            String destFile = TestManager.getProperty("screenshots.folder") + screenshotFileName;
-            FileUtils.copyFile(srcFile, new File(destFile));
-            Logger.info("Screenshot saved to: " + destFile);
-        } catch (IOException e) {
-            Logger.exception(e);
+        if (webDriver != null) {
+            try {
+                File srcFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
+                String screenshotFileName = "screenshot_" + CommonUtils.getCustomTimeStampFor("yyyyMMdd_HHmmss") + ".png";
+                String destFile = TestManager.getProperty("screenshots.folder") + screenshotFileName;
+                FileUtils.copyFile(srcFile, new File(destFile));
+                Logger.info("Screenshot saved to: " + destFile);
+            } catch (IOException e) {
+                Logger.exception(e);
+            }
         }
     }
 
     public static void close() {
-        Logger.info("Closing open sessions...");
-        webDriver.quit();
-        webDriver = null;
+        if (webDriver != null) {
+            Logger.info("Closing open sessions...");
+            webDriver.quit();
+            webDriver = null;
+        }
     }
 
     private static void launchDriver() {
