@@ -6,12 +6,10 @@ import cucumber.api.java.en.When;
 import pages.HomePage;
 import utils.Logger;
 
-import static org.junit.Assert.assertTrue;
-
 /**
  * Created by Ramesh Baskarasubramanian on 6/12/15.
  */
-public class HomePageSteps {
+public class HomePageSteps extends BaseStep {
     private HomePage homePage = new HomePage();
 
     @Given("^I open the home page$")
@@ -29,6 +27,6 @@ public class HomePageSteps {
     @Then("^I should get the search results for \"([^\"]*)\"$")
     public void I_should_get_the_search_results_for(String text) throws Throwable {
         Logger.info("Verifying if " + text + " is searched...");
-        assertTrue(homePage.isSearched(text));
+        verify(true, homePage.isSearched(text));
     }
 }

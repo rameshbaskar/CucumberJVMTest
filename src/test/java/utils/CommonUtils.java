@@ -16,7 +16,7 @@ public class CommonUtils {
         }
     }
 
-    public static String timeStamp() {
-        return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+    public static String getCustomTimeStampFor(String format) {
+        return new SimpleDateFormat(format).format(new Date());
     }
 }
