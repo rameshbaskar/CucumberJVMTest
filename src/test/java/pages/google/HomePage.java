@@ -36,6 +36,6 @@ public class HomePage extends BasePage {
     }
 
     public boolean isSearched(String text) {
-        return tbSearch.getAttribute("value").contains(text);
+        return getValueFrom(tbSearch).contains(text);
     }
 }
