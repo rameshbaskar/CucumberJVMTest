@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -52,5 +53,13 @@ class BasePage {
 
     String getValueFrom(WebElement textBox) {
         return textBox.getAttribute("value");
+    }
+
+    void selectDropdownByValue(WebElement element, String value) {
+        new Select(element).selectByValue(value);
+    }
+
+    void selectDropdownByText(WebElement element, String text) {
+        new Select(element).selectByVisibleText(text);
     }
 }
