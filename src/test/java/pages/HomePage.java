@@ -1,4 +1,4 @@
-package pages.google;
+package pages;
 
 import core.TestManager;
 import org.openqa.selenium.WebElement;
