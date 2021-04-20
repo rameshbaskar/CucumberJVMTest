@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 
 import static core.Driver.close;
 import static core.Driver.start;
-import static core.TestManager.loadConfiguration;
 
 /**
  * Created by Ramesh Baskarasubramanian on 6/12/15.
@@ -19,7 +18,6 @@ public class RunTest {
 
     @BeforeClass
     public static void setup() {
-        loadConfiguration();
         start();
     }
 

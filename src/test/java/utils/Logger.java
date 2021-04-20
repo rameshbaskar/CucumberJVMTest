@@ -23,6 +23,6 @@ public class Logger {
     }
 
     private static String getFormattedMessage(String message) {
-        return "[" + CommonUtils.getCustomTimeStampFor("yyyy-MM-dd HH:mm:ss") + "] " + message;
+        return "[" + CommonUtils.getTimeStamp("yyyy-MM-dd HH:mm:ss") + "] " + message;
     }
 }

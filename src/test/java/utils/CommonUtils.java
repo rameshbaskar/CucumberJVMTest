@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class CommonUtils {
 
-    public static void sleepFor(long seconds) {
+    public static void sleep(long seconds) {
         try {
             Thread.sleep(seconds * 1000);
         } catch (Exception e) {
@@ -16,7 +16,7 @@ public class CommonUtils {
         }
     }
 
-    public static String getCustomTimeStampFor(String format) {
+    public static String getTimeStamp(String format) {
         return new SimpleDateFormat(format).format(new Date());
     }
 }

@@ -1,6 +1,6 @@
 package pages;
 
-import core.TestManager;
+import core.Configuration;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -22,7 +22,7 @@ public class HomePage extends BasePage {
     }
 
     public void visit() {
-        String url = TestManager.getProperty("base.url");
+        String url = Configuration.getConfig("base_url");
         Logger.info("Loading HomePage using URL: " + url);
         visit(url);
         if (!elementWithWaitFor(tbSearch).isDisplayed()) {

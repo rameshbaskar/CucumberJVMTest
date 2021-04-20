@@ -9,15 +9,16 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import utils.CommonUtils;
 import utils.Logger;
-
 import java.io.File;
-import java.io.IOException;
+import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
+import static io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver;
 
 /**
  * Created by Ramesh Baskarasubramanian on 6/10/15.
  */
 public class Driver {
     private static WebDriver webDriver = null;
+    private static final String SCREENSHOTS_FOLDER = "";
 
     public synchronized static void start() {
         if (webDriver == null) {
@@ -38,20 +39,18 @@ public class Driver {
     }
 
     public static void screenShot() {
-        if (webDriver != null) {
-            try {
-                File srcFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-                String screenshotFileName = "screenshot_" + CommonUtils.getCustomTimeStampFor("yyyyMMdd_HHmmss") + ".png";
-                String destFile = TestManager.getProperty("screenshots.folder") + screenshotFileName;
-                FileUtils.copyFile(srcFile, new File(destFile));
-                Logger.info("Screenshot saved to: " + destFile);
-            } catch (IOException e) {
-                Logger.exception(e);
-            }
+        try {
+            File srcFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
+            String screenshotFileName = "screenshot_" + CommonUtils.getTimeStamp("yyyyMMdd_HHmmss") + ".png";
+            String destFile = SCREENSHOTS_FOLDER + screenshotFileName;
+            FileUtils.copyFile(srcFile, new File(destFile));
+            Logger.info("Screenshot saved to: " + destFile);
+        } catch (Exception e) {
+            Logger.exception(e);
         }
     }
 
-    public static void close() {
+    public synchronized static void close() {
         if (webDriver != null) {
             Logger.info("Closing open sessions...");
             webDriver.quit();
@@ -60,13 +59,18 @@ public class Driver {
     }
 
     private static void launchDriver() {
-        if (TestManager.getProperty("browser").equals("firefox")) {
-            Logger.info("Starting firefox driver now...");
-            webDriver = new FirefoxDriver(new FirefoxProfile());
-        } else {
-            Logger.info("Starting chrome driver now...");
-            System.setProperty("webdriver.chrome.driver", TestManager.getProperty("chrome.path"));
-            webDriver = new ChromeDriver();
+        switch(Configuration.getConfig("browser").toLowerCase()) {
+            case "firefox":
+                Logger.info("Initialising Firefox driver...");
+                firefoxdriver().setup();
+                webDriver = new FirefoxDriver(new FirefoxProfile());
+                break;
+            case "chrome":
+            default:
+                Logger.info("Initialising Chrome driver...");
+                chromedriver().setup();
+                webDriver = new ChromeDriver();
+                break;
         }
     }
 }
