@@ -3,11 +3,10 @@ package features;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
-import static core.Driver.close;
-import static core.Driver.start;
+import static core.Configuration.getConfig;
+import static core.Driver.stopDriver;
 
 /**
  * Created by Ramesh Baskarasubramanian on 6/12/15.
@@ -15,14 +14,9 @@ import static core.Driver.start;
 @RunWith(Cucumber.class)
 @CucumberOptions(format = {"pretty", "html:target/cucumber"})
 public class RunTest {
-
-    @BeforeClass
-    public static void setup() {
-        start();
-    }
-
     @AfterClass
     public static void tearDown() {
-        close();
+        if (getConfig("CLOSE_BROWSER_AFTER_TEST").equalsIgnoreCase("true"))
+            stopDriver();
     }
 }

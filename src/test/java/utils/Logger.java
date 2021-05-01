@@ -1,6 +1,7 @@
 package utils;
 
-import core.Driver;
+import static core.Driver.stopDriver;
+import static utils.CommonUtils.getTimeStamp;
 
 /**
  * Created by rameshb on 6/10/15.
@@ -15,14 +16,13 @@ public class Logger {
     }
 
     public static void exception(Exception exception) {
-        Driver.screenShot();
         System.err.println("Fatal exception has occurred !!! Below is the stacktrace for debugging purposes.");
         exception.printStackTrace();
-        Driver.close();
+        stopDriver();
         System.exit(0);
     }
 
     private static String getFormattedMessage(String message) {
-        return "[" + CommonUtils.getTimeStamp("yyyy-MM-dd HH:mm:ss") + "] " + message;
+        return "[" + getTimeStamp("yyyy-MM-dd HH:mm:ss") + "] " + message;
     }
 }

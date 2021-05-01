@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Created by Ramesh Baskarasubramanian on 6/10/15.
  */
 class BasePage {
-    WebDriver driver = Driver.driver();
+    static WebDriver driver = Driver.getDriver();
 
     void visit(String url) {
         driver.get(url);

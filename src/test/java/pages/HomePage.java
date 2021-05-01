@@ -1,10 +1,11 @@
 package pages;
 
-import core.Configuration;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import utils.Logger;
+
+import static core.Configuration.getConfig;
+import static org.openqa.selenium.support.PageFactory.initElements;
 
 /**
  * Created by Ramesh Baskarasubramanian on 6/11/15.
@@ -18,11 +19,11 @@ public class HomePage extends BasePage {
     private WebElement btnSearch;
 
     public HomePage() {
-        PageFactory.initElements(driver, this);
+        initElements(driver, this);
     }
 
     public void visit() {
-        String url = Configuration.getConfig("base_url");
+        String url = getConfig("BASE_URL");
         Logger.info("Loading HomePage using URL: " + url);
         visit(url);
         if (!elementWithWaitFor(tbSearch).isDisplayed()) {
@@ -30,7 +31,7 @@ public class HomePage extends BasePage {
         }
     }
 
-    public void searchFor(String text) {
+    public void search(String text) {
         tbSearch.sendKeys(text);
         btnSearch.click();
     }

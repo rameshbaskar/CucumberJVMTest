@@ -21,7 +21,7 @@ public class HomePageSteps extends BaseStep {
     @When("^I search for \"([^\"]*)\"$")
     public void I_search_for(String text) throws Throwable {
         Logger.info("Searching for " + text + " ...");
-        homePage.searchFor(text);
+        homePage.search(text);
     }
 
     @Then("^I should get the search results for \"([^\"]*)\"$")
